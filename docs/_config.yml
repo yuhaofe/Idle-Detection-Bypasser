@@ -1,8 +1,0 @@
-title: Idle Detection Bypasser
-description: Give a fake active response to the caller of the Idle Detection API.
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-- jekyll-remote-theme
-github:
-  greasyfork_url: https://greasyfork.org/scripts/432878-idle-detection-bypasser
-google_analytics: UA-208560779-1

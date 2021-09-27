@@ -6,4 +6,4 @@
 
 在不给权限网站就拒绝服务时，这个脚本就派上用场了
 
-[可以用这个示例来测试脚本是否起作用](https://flyhaozi.github.io/Idle-Detection-Bypasser/)
+[可以用这个示例来测试脚本是否起作用](https://flyhaozi.com/idle-detection-bypasser)

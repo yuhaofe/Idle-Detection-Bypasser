@@ -6,4 +6,4 @@ Normally, you don't have to use this script because you can deny the permission 
 
 You only need this script when the website refuses to provide service without the permission.
 
-[Use this example to check if the userscript works.](https://flyhaozi.github.io/Idle-Detection-Bypasser/)
+[Use this example to check if the userscript works.](https://flyhaozi.com/idle-detection-bypasser)
