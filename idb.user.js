@@ -3,7 +3,7 @@
 // @name:zh             绕过 Idle Detection
 // @name:zh-CN          绕过 Idle Detection
 // @namespace           https://github.com/flyhaozi
-// @version             0.1.0
+// @version             0.2.0
 // @description         Give a fake active response to the caller of the Idle Detection API
 // @description:zh      给 Idle Detection API 的调用者一个虚假的 active 响应
 // @description:zh-CN   给 Idle Detection API 的调用者一个虚假的 active 响应
@@ -15,21 +15,26 @@
 
 (function() {
     'use strict';
-    if (!('IdleDetector' in window)) {
-        return console.log('Idle Detector is not available.');
-    }
-
-    let callback = null;
-    window.IdleDetector.prototype.addEventListener = function(type, listener, options) {
-        callback = listener;
-
-        console.log('Idle Detection Detected!');
+    // https://wicg.github.io/idle-detection/#api
+    // https://chromium.googlesource.com/chromium/src/+/01971188f2f12266e0e4d119a294c52f4a3b0f41/third_party/blink/renderer/modules/idle/idle_detector.h
+    // https://chromium.googlesource.com/chromium/src/+/01971188f2f12266e0e4d119a294c52f4a3b0f41/third_party/blink/renderer/modules/idle/idle_detector.cc
+    const fakeDetector = function() {
+        this.userState = null;
+        this.screenState = null;
     };
-    window.IdleDetector.prototype.start = function() {
-        Object.defineProperty(this, 'userState', { value: 'active', writable: false });
-        Object.defineProperty(this, 'screenState', { value: 'unlocked', writable: false });
-        callback && callback({ currentTarget: this, target: this });
 
-        console.log('Idle Detection Bypassed!');
+    fakeDetector.requestPermission = async function() {
+        return Promise.resolve('granted');
     };
+
+    fakeDetector.prototype = Object.create(EventTarget.prototype);
+    
+    fakeDetector.prototype.start = async function(options) {
+        this.userState = 'active';
+        this.screenState = 'unlocked';
+        this.dispatchEvent(new Event('change'));
+    };
+
+    Object.defineProperty(window, 'IdleDetector', { value: fakeDetector, configurable: false, writable: false });
+    console.log('Idle Detector Hijacked!');
 })();
