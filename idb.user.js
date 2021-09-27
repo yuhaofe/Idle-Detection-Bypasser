@@ -3,7 +3,7 @@
 // @name:zh             绕过 Idle Detection
 // @name:zh-CN          绕过 Idle Detection
 // @namespace           https://github.com/flyhaozi
-// @version             0.1.0
+// @version             0.2.0
 // @description         Give a fake active response to the caller of the Idle Detection API
 // @description:zh      给 Idle Detection API 的调用者一个虚假的 active 响应
 // @description:zh-CN   给 Idle Detection API 的调用者一个虚假的 active 响应
